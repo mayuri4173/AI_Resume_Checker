@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Resume Analysis Result</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/result.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     NAVBAR
+===================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <span class="logo-icon">
+            AI
+        </span>
+
+        Resume<span class="highlight">Check</span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================
+     RESULT SECTION
+===================================== -->
+
+<main class="result-container">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="result-header">
+
+        <div class="result-badge">
+            ✨ AI Resume Analysis
+        </div>
+
+        <h1>
+            Resume Analysis Result
+        </h1>
+
+        <p>
+            Here's how your profile matches the selected job role.
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================
+         OVERALL SCORE
+    ===================================== -->
+
+    <section class="score-card">
+
+
+        <div class="score-content">
+
+            <h2>
+                Overall Eligibility
+            </h2>
+
+            <p>
+                Based on your resume and job requirements
+            </p>
+
+
+            <!-- SCORE CIRCLE -->
+
+            <div class="score-circle">
+
+                <div
+                    class="score-number"
+                    id="score"
+                >
+                    0%
+                </div>
+
+                <div class="score-label">
+                    Eligibility
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div
+                class="status-badge"
+                id="status"
+            >
+                Analyzing...
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         CANDIDATE INFORMATION
+    ===================================== -->
+
+    <section class="result-card">
+
+        <div class="card-title">
+
+            <div class="title-icon">
+                👤
+            </div>
+
+            <div>
+
+                <h2>
+                    Candidate Information
+                </h2>
+
+                <p>
+                    Basic candidate profile
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="candidate-grid">
+
+
+            <div class="info-box">
+
+                <span>
+                    Candidate Name
+                </span>
+
+                <strong id="candidateName">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Target Job
+                </span>
+
+                <strong id="targetJob">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Education
+                </span>
+
+                <strong id="education">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Experience
+                </span>
+
+                <strong id="experience">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Projects
+                </span>
+
+                <strong id="projects">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Certifications
+                </span>
+
+                <strong id="certifications">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span>
+                    Internship
+                </span>
+
+                <strong id="internship">
+                    -
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         ANALYSIS METRICS
+    ===================================== -->
+
+    <section class="result-card">
+
+        <div class="card-title">
+
+            <div class="title-icon">
+                📊
+            </div>
+
+            <div>
+
+                <h2>
+                    Resume Analysis
+                </h2>
+
+                <p>
+                    Breakdown of your eligibility
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="metrics-grid">
+
+
+            <!-- SKILL -->
+
+            <div class="metric-card">
+
+                <div class="metric-top">
+
+                    <span>
+                        Skill Match
+                    </span>
+
+                    <strong id="skillScore">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="skillBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div class="metric-card">
+
+                <div class="metric-top">
+
+                    <span>
+                        Education Match
+                    </span>
+
+                    <strong id="educationScore">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="educationBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="metric-card">
+
+                <div class="metric-top">
+
+                    <span>
+                        Experience Match
+                    </span>
+
+                    <strong id="experienceScore">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="experienceBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+
+            <div class="metric-card">
+
+                <div class="metric-top">
+
+                    <span>
+                        Project Strength
+                    </span>
+
+                    <strong id="projectScore">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="projectBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CERTIFICATIONS -->
+
+            <div class="metric-card">
+
+                <div class="metric-top">
+
+                    <span>
+                        Certifications
+                    </span>
+
+                    <strong id="certificationScore">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="certificationBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INTERNSHIP -->
+
+            <div class="metric-card">
+
+                <div class="metric-top">
+
+                    <span>
+                        Internship
+                    </span>
+
+                    <strong id="internshipScore">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="internshipBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         SKILL ANALYSIS
+    ===================================== -->
+
+    <section class="skills-section">
+
+
+        <!-- MATCHED SKILLS -->
+
+        <div class="skill-card">
+
+            <div class="skill-card-header">
+
+                <div class="skill-icon matched">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h2>
+                        Matched Skills
+                    </h2>
+
+                    <p>
+                        Skills relevant to the selected job
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="skills-list"
+                id="matchedSkills"
+            >
+
+                <!-- JavaScript will add skills here -->
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MISSING SKILLS -->
+
+        <div class="skill-card">
+
+            <div class="skill-card-header">
+
+                <div class="skill-icon missing">
+                    !
+                </div>
+
+                <div>
+
+                    <h2>
+                        Missing Skills
+                    </h2>
+
+                    <p>
+                        Skills that can improve your profile
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="skills-list"
+                id="missingSkills"
+            >
+
+                <!-- JavaScript will add skills here -->
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         RECOMMENDATION
+    ===================================== -->
+
+    <section class="recommendation-card">
+
+        <div class="recommendation-icon">
+            💡
+        </div>
+
+
+        <div>
+
+            <h2>
+                Profile Improvement
+            </h2>
+
+            <p id="recommendation">
+
+                Add relevant technical skills,
+                projects and certifications to
+                improve your job match.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         BUTTONS
+    ===================================== -->
+
+    <div class="result-actions">
+
+        <a
+            href="index.html"
+            class="secondary-btn"
+        >
+            ← Analyze Another Resume
+        </a>
+
+
+        <a
+            href="dashboard.html"
+            class="primary-btn"
+        >
+            View Dashboard →
+        </a>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================
+     JAVASCRIPT
+===================================== -->
+
+<script src="../static/js/result.js"></script>
+
+
+</body>
+
+</html>

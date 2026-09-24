@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Checker</title>
+
+    <!-- FRONTEND CSS -->
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <span class="logo-icon">AI</span>
+            Resume<span class="highlight">Check</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✨ AI Powered Resume Analysis
+            </div>
+
+            <h1>
+                Check Your Resume's
+                <span>Job Eligibility</span>
+            </h1>
+
+            <p>
+                Analyze your resume using an image, manual information,
+                or both. Get your eligibility score, matched skills,
+                missing skills and improvement suggestions.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <section class="main-section">
+
+        <div class="form-container">
+
+            <div class="section-heading">
+
+                <h2>How Do You Want To Check?</h2>
+
+                <p>
+                    Choose one option or use both methods.
+                </p>
+
+            </div>
+
+
+            <!-- ================= INPUT MODE ================= -->
+
+            <div class="mode-container">
+
+                <button
+                    type="button"
+                    class="mode-card active"
+                    id="imageModeBtn"
+                    onclick="selectMode('image')"
+                >
+
+                    <div class="mode-icon">📷</div>
+
+                    <h3>Resume Image</h3>
+
+                    <p>
+                        Upload an image of your resume
+                    </p>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="mode-card"
+                    id="manualModeBtn"
+                    onclick="selectMode('manual')"
+                >
+
+                    <div class="mode-icon">✍️</div>
+
+                    <h3>Manual Input</h3>
+
+                    <p>
+                        Enter your information manually
+                    </p>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="mode-card"
+                    id="bothModeBtn"
+                    onclick="selectMode('both')"
+                >
+
+                    <div class="mode-icon">📷 + ✍️</div>
+
+                    <h3>Both</h3>
+
+                    <p>
+                        Upload resume and enter details
+                    </p>
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= RESUME IMAGE ================= -->
+
+            <div
+                class="input-section"
+                id="imageSection"
+            >
+
+                <div class="section-title">
+
+                    <h2>📷 Upload Resume Image</h2>
+
+                    <p>
+                        Upload a clear image of your resume.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="upload-box"
+                    id="uploadBox"
+                >
+
+                    <div class="upload-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        Upload Your Resume
+                    </h3>
+
+                    <p>
+                        Drag & drop your resume image here
+                        <br>
+                        or click to browse
+                    </p>
+
+                    <span>
+                        Supported formats: JPG, JPEG, PNG
+                    </span>
+
+
+                    <input
+                        type="file"
+                        id="resumeFile"
+                        accept="image/png,image/jpeg,image/jpg"
+                        hidden
+                    >
+
+
+                    <button
+                        type="button"
+                        class="upload-btn"
+                        onclick="document.getElementById('resumeFile').click()"
+                    >
+                        Choose Resume Image
+                    </button>
+
+
+                    <div
+                        id="fileName"
+                        class="file-name"
+                    ></div>
+
+
+                    <img
+                        id="resumePreview"
+                        class="resume-preview"
+                        alt="Resume Preview"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= MANUAL FORM ================= -->
+
+            <form
+                id="resumeForm"
+                class="manual-section"
+            >
+
+                <div class="section-title">
+
+                    <h2>✍️ Candidate Information</h2>
+
+                    <p>
+                        Enter your details manually.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="candidateName">
+                            Candidate Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="candidateName"
+                            placeholder="Enter your name"
+                        >
+
+                    </div>
+
+
+                    <!-- JOB -->
+
+                    <div class="form-group">
+
+                        <label for="targetJob">
+                            Target Job
+                        </label>
+
+                        <select id="targetJob">
+
+                            <option value="">
+                                Select Job Role
+                            </option>
+
+                            <option value="Data Scientist">
+                                Data Scientist
+                            </option>
+
+                            <option value="Data Analyst">
+                                Data Analyst
+                            </option>
+
+                            <option value="AI/ML Engineer">
+                                AI / ML Engineer
+                            </option>
+
+                            <option value="Web Developer">
+                                Web Developer
+                            </option>
+
+                            <option value="Software Engineer">
+                                Software Engineer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- EDUCATION -->
+
+                    <div class="form-group">
+
+                        <label for="education">
+                            Education
+                        </label>
+
+                        <select id="education">
+
+                            <option value="">
+                                Select Education
+                            </option>
+
+                            <option value="B.Tech CSE">
+                                B.Tech CSE
+                            </option>
+
+                            <option value="B.Tech AIDS">
+                                B.Tech AIDS
+                            </option>
+
+                            <option value="B.Tech IT">
+                                B.Tech IT
+                            </option>
+
+                            <option value="BCA">
+                                BCA
+                            </option>
+
+                            <option value="MCA">
+                                MCA
+                            </option>
+
+                            <option value="M.Tech AI">
+                                M.Tech AI
+                            </option>
+
+                            <option value="M.Sc Data Science">
+                                M.Sc Data Science
+                            </option>
+
+                            <option value="B.Sc Data Science">
+                                B.Sc Data Science
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            Experience (Years)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="experience"
+                            min="0"
+                            max="50"
+                            step="0.1"
+                            placeholder="Example: 2.5"
+                        >
+
+                    </div>
+
+
+                    <!-- PROJECTS -->
+
+                    <div class="form-group">
+
+                        <label for="projects">
+                            Number of Projects
+                        </label>
+
+                        <input
+                            type="number"
+                            id="projects"
+                            min="0"
+                            placeholder="Example: 4"
+                        >
+
+                    </div>
+
+
+                    <!-- CERTIFICATIONS -->
+
+                    <div class="form-group">
+
+                        <label for="certifications">
+                            Number of Certifications
+                        </label>
+
+                        <input
+                            type="number"
+                            id="certifications"
+                            min="0"
+                            placeholder="Example: 2"
+                        >
+
+                    </div>
+
+
+                    <!-- INTERNSHIP -->
+
+                    <div class="form-group">
+
+                        <label for="internship">
+                            Internship
+                        </label>
+
+                        <select id="internship">
+
+                            <option value="">
+                                Select Option
+                            </option>
+
+                            <option value="Yes">
+                                Yes
+                            </option>
+
+                            <option value="No">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- SKILLS -->
+
+                    <div class="form-group full-width">
+
+                        <label for="skills">
+                            Technical Skills
+                        </label>
+
+                        <input
+                            type="text"
+                            id="skills"
+                            placeholder="Python, SQL, Machine Learning, Java..."
+                        >
+
+                        <small>
+                            Separate multiple skills using commas.
+                        </small>
+
+                    </div>
+
+
+                    <!-- RESUME TEXT -->
+
+                    <div class="form-group full-width">
+
+                        <label for="resumeText">
+                            Resume Summary
+                        </label>
+
+                        <textarea
+                            id="resumeText"
+                            rows="6"
+                            placeholder="Enter your resume summary..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+
+            <!-- ================= ANALYZE BUTTON ================= -->
+
+            <button
+                type="button"
+                class="analyze-btn"
+                id="analyzeBtn"
+                onclick="analyzeResume()"
+            >
+
+                <span>🤖</span>
+
+                Check Eligibility
+
+                <span>→</span>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section
+        class="how-section"
+        id="how-it-works"
+    >
+
+        <div class="section-heading">
+
+            <h2>
+                How AI Resume Checker Works
+            </h2>
+
+            <p>
+                Choose your input method and get your resume analysis.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Choose Input
+                </h3>
+
+                <p>
+                    Upload a resume image, enter information manually,
+                    or use both.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    AI Analysis
+                </h3>
+
+                <p>
+                    Your skills, education, projects and experience
+                    are analyzed.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Job Matching
+                </h3>
+
+                <p>
+                    Your profile is compared with the selected job role.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    Get Result
+                </h3>
+
+                <p>
+                    Receive your eligibility score and improvement
+                    suggestions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                AI
+            </span>
+
+            Resume<span class="highlight">Check</span>
+
+        </div>
+
+        <p>
+            AI-Based Resume Eligibility Checker
+        </p>
+
+        <p class="copyright">
+            © 2026 ResumeCheck. Academic Project.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="../static/js/script.js"></script>
+
+</body>
+
+</html>
